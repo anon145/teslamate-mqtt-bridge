@@ -64,9 +64,20 @@ for i in range(1, 10):  # Support up to 10 cars
         logger.info(f"Loaded VIN for car {i}")
 
 # Check if we have any VINs configured
-if not VINS:
+# Skip VIN requirement during testing (GitHub Actions, pytest, etc.)
+TESTING = any([
+    "PYTEST_CURRENT_TEST" in os.environ,
+    "GITHUB_ACTIONS" in os.environ,
+    "CI" in os.environ
+])
+
+if not VINS and not TESTING:
     logger.error("No VINs configured. Please add VIN_CAR_1, VIN_CAR_2, etc. to your .env file")
     sys.exit(1)
+elif not VINS and TESTING:
+    # Use dummy VINs for testing
+    VINS = {"TESTVIN123456789": 1, "TESTVIN987654321": 2}
+    logger.info("Using dummy VINs for testing environment")
 
 # Tesla API settings
 TESLA_WSS_URI = os.getenv("TESLA_WSS_URI", "wss://streaming.myteslamate.com/streaming/")
