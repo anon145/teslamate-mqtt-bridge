@@ -130,7 +130,7 @@ LOCATION_FIELDS = ["Location", "DestinationLocation", "OriginLocation"]
 class TeslaMetricConverter:
     """Class for handling Tesla metric conversions"""
     
-    def __init__(self, csv_file: str = None):
+    def __init__(self, csv_file: Optional[str] = None):
         if csv_file is None:
             # Use absolute path relative to this script's location
             script_dir = os.path.dirname(os.path.abspath(__file__))
