@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.9, 3.10, 3.11, 3.12]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
 
     steps:
     - uses: actions/checkout@v3
@@ -24,7 +24,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest mypy pytest-cov
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        pip install -e .
+        # Install pywin32 only on Windows (skip on Ubuntu)
+        pip install paho-mqtt websockets python-dotenv
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
