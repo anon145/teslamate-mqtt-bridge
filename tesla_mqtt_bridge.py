@@ -713,7 +713,14 @@ if __name__ == "__main__":
     # Set up proper signal handlers
     def signal_handler(sig, frame):
         logger.info("Received shutdown signal, terminating...")
-        # Let asyncio.run() handle the cleanup
+        # Get the current event loop and create a task to cancel all running tasks
+        try:
+            loop = asyncio.get_running_loop()
+            for task in asyncio.all_tasks(loop):
+                task.cancel()
+        except RuntimeError:
+            # No running loop, exit normally
+            sys.exit(0)
     
     # Register signal handlers
     signal.signal(signal.SIGINT, signal_handler)
