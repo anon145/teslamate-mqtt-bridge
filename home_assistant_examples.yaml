@@ -1,0 +1,1263 @@
+################################################################################
+## Sensors for Quick Silver (Car 2)
+################################################################################
+
+# - sensor:
+#     name: Quick Silver Display Name
+#     object_id: quicksilver_display_name
+#     unique_id: quicksilver_display_name
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/display_name"
+#     icon: mdi:car
+
+# - device_tracker:
+#     name: Quick Silver Location
+#     object_id: quicksilver_location
+#     unique_id: quicksilver_location
+#     device: *device_default_qs
+#     json_attributes_topic: "myteslamate/cars/2/location"
+#     icon: mdi:crosshairs-gps
+
+# - device_tracker:
+#     name: Quick Silver Active route location
+#     object_id: quicksilver_active_route_location
+#     unique_id: quicksilver_active_route_location
+#     availability: &teslamate_active_route_availability_qs
+#       - topic: "myteslamate/cars/2/active_route"
+#         value_template: "{{ 'offline' if value_json.error else 'online' }}"
+#     device: *device_default_qs
+#     json_attributes_topic: "myteslamate/cars/2/active_route"
+#     json_attributes_template: >
+#       {% if not value_json.error and value_json.location %}
+#         {{ value_json.location | tojson }}
+#       {% else %}
+#         {}
+#       {% endif %}
+#     icon: mdi:crosshairs-gps
+
+# - sensor:
+#     name: Quick Silver State
+#     object_id: quicksilver_state
+#     unique_id: quicksilver_state
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/state"
+#     icon: mdi:car-connected
+
+# - sensor:
+#     name: Quick Silver Since
+#     object_id: quicksilver_since
+#     unique_id: quicksilver_since
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/since"
+#     device_class: timestamp
+#     icon: mdi:clock-outline
+
+# - sensor:
+#     name: Quick Silver Version
+#     object_id: quicksilver_version
+#     unique_id: quicksilver_version
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/version"
+#     icon: mdi:alphabetical
+
+# - sensor:
+#     name: Quick Silver Update Version
+#     object_id: quicksilver_update_version
+#     unique_id: quicksilver_update_version
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/update_version"
+#     icon: mdi:alphabetical
+
+# - sensor:
+#     name: Quick Silver Model
+#     object_id: quicksilver_model
+#     unique_id: quicksilver_model
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/model"
+
+# - sensor:
+#     name: Quick Silver Trim Badging
+#     object_id: quicksilver_trim_badging
+#     unique_id: quicksilver_trim_badging
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/trim_badging"
+#     icon: mdi:shield-star-outline
+
+# - sensor:
+#     name: Quick Silver Exterior Color
+#     object_id: quicksilver_exterior_color
+#     unique_id: quicksilver_exterior_color
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/exterior_color"
+#     icon: mdi:palette
+
+# - sensor:
+#     name: Quick Silver Wheel Type
+#     object_id: quicksilver_wheel_type
+#     unique_id: quicksilver_wheel_type
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/wheel_type"
+
+# - sensor:
+#     name: Quick Silver Spoiler Type
+#     object_id: quicksilver_spoiler_type
+#     unique_id: quicksilver_spoiler_type
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/spoiler_type"
+#     icon: mdi:car-sports
+
+# - sensor:
+#     name: Quick Silver Geofence
+#     object_id: quicksilver_geofence
+#     unique_id: quicksilver_geofence
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/geofence"
+#     icon: mdi:earth
+
+- sensor:
+    name: Quick Silver Shift State
+    object_id: quicksilver_shift_state
+    unique_id: quicksilver_shift_state
+    device: *device_default_qs
+    state_topic: "myteslamate/cars/2/gear"
+    icon: mdi:car-shift-pattern
+
+# - binary_sensor:
+#     name: Quick Silver Parking Brake
+#     object_id: quicksilver_park_brake
+#     unique_id: quicksilver_park_brake
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/shift_state"
+#     value_template: >-
+#       {% if value == 'P' %}
+#           ON
+#       {% else %}
+#           OFF
+#       {% endif %}
+#     icon: mdi:car-brake-parking
+
+# - sensor:
+#     name: Quick Silver Power
+#     object_id: quicksilver_power
+#     unique_id: quicksilver_power
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/power"
+#     device_class: power
+#     unit_of_measurement: kW
+#     icon: mdi:flash
+
+- sensor:
+    name: Quick Silver Speed
+    object_id: quicksilver_speed
+    unique_id: quicksilver_speed
+    device: *device_default_qs
+    state_topic: "myteslamate/cars/2/speed_kmh"
+    device_class: speed
+    unit_of_measurement: "km/h"
+    icon: mdi:speedometer
+
+- sensor:
+    name: Quick Silver Heading
+    object_id: quicksilver_heading
+    unique_id: quicksilver_heading
+    device: *device_default_qs
+    state_topic: "myteslamate/cars/2/gps_heading"
+    unit_of_measurement: °
+    icon: mdi:compass
+
+# - sensor:
+#     name: Quick Silver Elevation
+#     object_id: quicksilver_elevation
+#     unique_id: quicksilver_elevation
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/elevation"
+#     device_class: distance
+#     unit_of_measurement: m
+#     icon: mdi:image-filter-hdr
+
+# - sensor:
+#     name: Quick Silver Inside Temp
+#     object_id: quicksilver_inside_temp
+#     unique_id: quicksilver_inside_temp
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/inside_temp"
+#     device_class: temperature
+#     unit_of_measurement: °C
+#     icon: mdi:thermometer-lines
+
+# - sensor:
+#     name: Quick Silver Outside Temp
+#     object_id: quicksilver_outside_temp
+#     unique_id: quicksilver_outside_temp
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/outside_temp"
+#     device_class: temperature
+#     unit_of_measurement: °C
+#     icon: mdi:thermometer-lines
+
+- sensor:
+    name: Quick Silver Odometer
+    object_id: quicksilver_odometer
+    unique_id: quicksilver_odometer
+    device: *device_default_qs
+    state_topic: "myteslamate/cars/2/odometer"
+    device_class: distance
+    unit_of_measurement: km
+    icon: mdi:counter
+
+- sensor:
+    name: Quick Silver Est Battery Range
+    object_id: quicksilver_est_battery_range
+    unique_id: quicksilver_est_battery_range
+    device: *device_default_qs
+    device_class: distance
+    state_topic: "myteslamate/cars/2/battery_range_estimated_km"
+    unit_of_measurement: km
+    icon: mdi:gauge
+
+- sensor:
+    name: Quick Silver Rated Battery Range
+    object_id: quicksilver_rated_battery_range
+    unique_id: quicksilver_rated_battery_range
+    device: *device_default_qs
+    state_topic: "myteslamate/cars/2/battery_range_rated_km"
+    device_class: distance
+    unit_of_measurement: km
+    icon: mdi:gauge
+
+# - sensor:
+#     name: Quick Silver Ideal Battery Range
+#     object_id: quicksilver_ideal_battery_range
+#     unique_id: quicksilver_ideal_battery_range
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/ideal_battery_range_km"
+#     device_class: distance
+#     unit_of_measurement: km
+#     icon: mdi:gauge
+
+- sensor:
+    name: Quick Silver Battery Level
+    object_id: quicksilver_battery_level
+    unique_id: quicksilver_battery_level
+    device: *device_default_qs
+    state_topic: "myteslamate/cars/2/soc"
+    device_class: battery
+    unit_of_measurement: "%"
+    icon: mdi:battery-80
+
+# - sensor:
+#     name: Quick Silver Usable Battery Level
+#     object_id: quicksilver_usable_battery_level
+#     unique_id: quicksilver_usable_battery_level
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/usable_battery_level"
+#     device_class: battery
+#     unit_of_measurement: "%"
+#     icon: mdi:battery-80
+
+# - sensor:
+#     name: Quick Silver Charge Energy Added
+#     object_id: quicksilver_charge_energy_added
+#     unique_id: quicksilver_charge_energy_added
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/charge_energy_added"
+#     device_class: energy
+#     unit_of_measurement: kWh
+#     icon: mdi:battery-charging
+
+# - sensor:
+#     name: Quick Silver Charge Limit Soc
+#     object_id: quicksilver_charge_limit_soc
+#     unique_id: quicksilver_charge_limit_soc
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/charge_limit_soc"
+#     device_class: battery
+#     unit_of_measurement: "%"
+#     icon: mdi:battery-charging-100
+
+# - sensor:
+#     name: Quick Silver Charger Actual Current
+#     object_id: quicksilver_charger_actual_current
+#     unique_id: quicksilver_charger_actual_current
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/charger_actual_current"
+#     device_class: current
+#     unit_of_measurement: A
+#     icon: mdi:lightning-bolt
+
+# - sensor:
+#     name: Quick Silver Charger Phases
+#     object_id: quicksilver_charger_phases
+#     unique_id: quicksilver_charger_phases
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/charger_phases"
+#     icon: mdi:sine-wave
+
+- sensor:
+    name: Quick Silver Charger Power
+    object_id: quicksilver_charger_power
+    unique_id: quicksilver_charger_power
+    device: *device_default_qs
+    state_topic: "myteslamate/cars/2/ac_charging_power"
+    device_class: power
+    unit_of_measurement: kW
+    icon: mdi:lightning-bolt
+
+# - sensor:
+#     name: Quick Silver Charger Voltage
+#     object_id: quicksilver_charger_voltage
+#     unique_id: quicksilver_charger_voltage
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/charger_voltage"
+#     device_class: voltage
+#     unit_of_measurement: V
+#     icon: mdi:lightning-bolt
+
+# - sensor:
+#     name: Quick Silver Scheduled Charging Start Time
+#     object_id: quicksilver_scheduled_charging_start_time
+#     unique_id: quicksilver_scheduled_charging_start_time
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/scheduled_charging_start_time"
+#     device_class: timestamp
+#     icon: mdi:clock-outline
+
+# - sensor:
+#     name: Quick Silver Time To Full Charge
+#     object_id: quicksilver_time_to_full_charge
+#     unique_id: quicksilver_time_to_full_charge
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/time_to_full_charge"
+#     device_class: duration
+#     unit_of_measurement: h
+#     icon: mdi:clock-outline
+
+# - sensor:
+#     name: Quick Silver TPMS Pressure Front Left
+#     object_id: quicksilver_tpms_pressure_fl
+#     unique_id: quicksilver_tpms_pressure_fl
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/tpms_pressure_fl"
+#     device_class: pressure
+#     unit_of_measurement: bar
+#     icon: mdi:car-tire-alert
+
+# - sensor:
+#     name: Quick Silver TPMS Pressure Front Left (psi)
+#     object_id: quicksilver_tpms_pressure_fl_psi
+#     unique_id: quicksilver_tpms_pressure_fl_psi
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/tpms_pressure_fl"
+#     device_class: pressure
+#     unit_of_measurement: psi
+#     icon: mdi:car-tire-alert
+#     value_template: "{{ value | float * 14.50377 }}"
+#     suggested_display_precision: 2
+
+# - sensor:
+#     name: Quick Silver TPMS Pressure Front Right
+#     object_id: quicksilver_tpms_pressure_fr
+#     unique_id: quicksilver_tpms_pressure_fr
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/tpms_pressure_fr"
+#     device_class: pressure
+#     unit_of_measurement: bar
+#     icon: mdi:car-tire-alert
+
+# - sensor:
+#     name: Quick Silver TPMS Pressure Front Right (psi)
+#     object_id: quicksilver_tpms_pressure_fr_psi
+#     unique_id: quicksilver_tpms_pressure_fr_psi
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/tpms_pressure_fr"
+#     device_class: pressure
+#     unit_of_measurement: psi
+#     icon: mdi:car-tire-alert
+#     value_template: "{{ value | float * 14.50377 }}"
+#     suggested_display_precision: 2
+
+# - sensor:
+#     name: Quick Silver TPMS Pressure Rear Left
+#     object_id: quicksilver_tpms_pressure_rl
+#     unique_id: quicksilver_tpms_pressure_rl
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/tpms_pressure_rl"
+#     device_class: pressure
+#     unit_of_measurement: bar
+#     icon: mdi:car-tire-alert
+
+# - sensor:
+#     name: Quick Silver TPMS Pressure Rear Left (psi)
+#     object_id: quicksilver_tpms_pressure_rl_psi
+#     unique_id: quicksilver_tpms_pressure_rl_psi
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/tpms_pressure_rl"
+#     device_class: pressure
+#     unit_of_measurement: psi
+#     icon: mdi:car-tire-alert
+#     value_template: "{{ value | float * 14.50377 }}"
+#     suggested_display_precision: 2
+
+# - sensor:
+#     name: Quick Silver TPMS Pressure Rear Right
+#     object_id: quicksilver_tpms_pressure_rr
+#     unique_id: quicksilver_tpms_pressure_rr
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/tpms_pressure_rr"
+#     device_class: pressure
+#     unit_of_measurement: bar
+#     icon: mdi:car-tire-alert
+
+# - sensor:
+#     name: Quick Silver TPMS Pressure Rear Right (psi)
+#     object_id: quicksilver_tpms_pressure_rr_psi
+#     unique_id: quicksilver_tpms_pressure_rr_psi
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/tpms_pressure_rr"
+#     device_class: pressure
+#     unit_of_measurement: psi
+#     icon: mdi:car-tire-alert
+#     value_template: "{{ value | float * 14.50377 }}"
+#     suggested_display_precision: 2
+
+# - sensor:
+#     name: Quick Silver Active route destination
+#     object_id: quicksilver_active_route_destination
+#     unique_id: quicksilver_active_route_destination
+#     availability: *teslamate_active_route_availability_qs
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/active_route"
+#     value_template: >
+#       {% if not value_json.error and value_json.destination %}
+#         {{ value_json.destination }}
+#       {% endif %}
+#     icon: mdi:map-marker
+
+# - sensor:
+#     name: Quick Silver Active route energy at arrival
+#     object_id: quicksilver_active_route_energy_at_arrival
+#     unique_id: quicksilver_active_route_energy_at_arrival
+#     availability: *teslamate_active_route_availability_qs
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/active_route"
+#     value_template: >
+#       {% if not value_json.error and value_json.energy_at_arrival %}
+#         {{ value_json.energy_at_arrival }}
+#       {% endif %}
+#     device_class: battery
+#     unit_of_measurement: "%"
+#     icon: mdi:battery-80
+
+# - sensor:
+#     name: Quick Silver Active route distance to arrival
+#     object_id: quicksilver_active_route_distance_to_arrival
+#     unique_id: quicksilver_active_route_distance_to_arrival
+#     availability: *teslamate_active_route_availability_qs
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/active_route"
+#     value_template: >
+#       {% if not value_json.error and value_json.miles_to_arrival %}
+#         {{ value_json.miles_to_arrival }}
+#       {% endif %}
+#     device_class: distance
+#     unit_of_measurement: mi
+#     icon: mdi:map-marker-distance
+
+# - sensor:
+#     name: Quick Silver Active route minutes to arrival
+#     object_id: quicksilver_active_route_minutes_to_arrival
+#     unique_id: quicksilver_active_route_minutes_to_arrival
+#     availability: *teslamate_active_route_availability_qs
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/active_route"
+#     value_template: >
+#       {% if not value_json.error and value_json.minutes_to_arrival %}
+#         {{ value_json.minutes_to_arrival }}
+#       {% endif %}
+#     device_class: duration
+#     unit_of_measurement: min
+#     icon: mdi:clock-outline
+
+# - sensor:
+#     name: Quick Silver Active route traffic minutes delay
+#     object_id: quicksilver_active_route_traffic_minutes_delay
+#     unique_id: quicksilver_active_route_traffic_minutes_delay
+#     availability: *teslamate_active_route_availability_qs
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/active_route"
+#     value_template: >
+#       {% if not value_json.error and value_json.traffic_minutes_delay %}
+#         {{ value_json.traffic_minutes_delay }}
+#       {% endif %}
+#     device_class: duration
+#     unit_of_measurement: min
+#     icon: mdi:clock-alert-outline
+
+# - binary_sensor:
+#     name: Quick Silver Healthy
+#     object_id: quicksilver_healthy
+#     unique_id: quicksilver_healthy
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/healthy"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:heart-pulse
+
+# - binary_sensor:
+#     name: Quick Silver Update Available
+#     object_id: quicksilver_update_available
+#     unique_id: quicksilver_update_available
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/update_available"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:alarm
+
+# - binary_sensor:
+#     name: Quick Silver Locked
+#     object_id: quicksilver_locked
+#     unique_id: quicksilver_locked
+#     device: *device_default_qs
+#     device_class: lock
+#     state_topic: "myteslamate/cars/2/locked"
+#     payload_on: "false"
+#     payload_off: "true"
+
+# - binary_sensor:
+#     name: Quick Silver Sentry Mode
+#     object_id: quicksilver_sentry_mode
+#     unique_id: quicksilver_sentry_mode
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/sentry_mode"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:cctv
+
+# - binary_sensor:
+#     name: Quick Silver Windows Open
+#     object_id: quicksilver_windows_open
+#     unique_id: quicksilver_windows_open
+#     device: *device_default_qs
+#     device_class: window
+#     state_topic: "myteslamate/cars/2/windows_open"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:car-door
+
+# - binary_sensor:
+#     name: Quick Silver Doors Open
+#     object_id: quicksilver_doors_open
+#     unique_id: quicksilver_doors_open
+#     device: *device_default_qs
+#     device_class: door
+#     state_topic: "myteslamate/cars/2/doors_open"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:car-door
+
+# - binary_sensor:
+#     name: Quick Silver Trunk Open
+#     object_id: quicksilver_trunk_open
+#     unique_id: quicksilver_trunk_open
+#     device: *device_default_qs
+#     device_class: opening
+#     state_topic: "myteslamate/cars/2/trunk_open"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:car-side
+
+# - binary_sensor:
+#     name: Quick Silver Frunk Open
+#     object_id: quicksilver_frunk_open
+#     unique_id: quicksilver_frunk_open
+#     device: *device_default_qs
+#     device_class: opening
+#     state_topic: "myteslamate/cars/2/frunk_open"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:car-side
+
+# - binary_sensor:
+#     name: Quick Silver Is User Present
+#     object_id: quicksilver_is_user_present
+#     unique_id: quicksilver_is_user_present
+#     device: *device_default_qs
+#     device_class: presence
+#     state_topic: "myteslamate/cars/2/is_user_present"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:human-greeting
+
+# - binary_sensor:
+#     name: Quick Silver Is Climate On
+#     object_id: quicksilver_is_climate_on
+#     unique_id: quicksilver_is_climate_on
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/is_climate_on"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:fan
+
+# - binary_sensor:
+#     name: Quick Silver Is Preconditioning
+#     object_id: quicksilver_is_preconditioning
+#     unique_id: quicksilver_is_preconditioning
+#     device: *device_default_qs
+#     state_topic: "myteslamate/cars/2/is_preconditioning"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:fan
+
+# - binary_sensor:
+#     name: Quick Silver Plugged In
+#     object_id: quicksilver_plugged_in
+#     unique_id: quicksilver_plugged_in
+#     device: *device_default_qs
+#     device_class: plug
+#     state_topic: "myteslamate/cars/2/plugged_in"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:ev-station
+
+# - binary_sensor:
+#     name: Quick Silver Charge Port Door OPEN
+#     object_id: quicksilver_charge_port_door_open
+#     unique_id: quicksilver_charge_port_door_open
+#     device: *device_default_qs
+#     device_class: opening
+#     state_topic: "myteslamate/cars/2/charge_port_door_open"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:ev-plug-tesla
+
+################################################################################
+## Sensors for Mods Tesla (Car 1)
+################################################################################
+
+# - sensor:
+#     name: Mods Tesla Display Name
+#     object_id: modstesla_display_name
+#     unique_id: modstesla_display_name
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/display_name"
+#     icon: mdi:car
+
+# - device_tracker:
+#     name: Mods Tesla Location
+#     object_id: modstesla_location
+#     unique_id: modstesla_location
+#     device: *device_default_mt
+#     json_attributes_topic: "myteslamate/cars/1/location"
+#     icon: mdi:crosshairs-gps
+
+# - device_tracker:
+#     name: Mods Tesla Active route location
+#     object_id: modstesla_active_route_location
+#     unique_id: modstesla_active_route_location
+#     availability: &teslamate_active_route_availability_mt
+#       - topic: "myteslamate/cars/1/active_route"
+#         value_template: "{{ 'offline' if value_json.error else 'online' }}"
+#     device: *device_default_mt
+#     json_attributes_topic: "myteslamate/cars/1/active_route"
+#     json_attributes_template: >
+#       {% if not value_json.error and value_json.location %}
+#         {{ value_json.location | tojson }}
+#       {% else %}
+#         {}
+#       {% endif %}
+#     icon: mdi:crosshairs-gps
+
+# - sensor:
+#     name: Mods Tesla State
+#     object_id: modstesla_state
+#     unique_id: modstesla_state
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/state"
+#     icon: mdi:car-connected
+
+# - sensor:
+#     name: Mods Tesla Since
+#     object_id: modstesla_since
+#     unique_id: modstesla_since
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/since"
+#     device_class: timestamp
+#     icon: mdi:clock-outline
+
+# - sensor:
+#     name: Mods Tesla Version
+#     object_id: modstesla_version
+#     unique_id: modstesla_version
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/version"
+#     icon: mdi:alphabetical
+
+# - sensor:
+#     name: Mods Tesla Update Version
+#     object_id: modstesla_update_version
+#     unique_id: modstesla_update_version
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/update_version"
+#     icon: mdi:alphabetical
+
+# - sensor:
+#     name: Mods Tesla Model
+#     object_id: modstesla_model
+#     unique_id: modstesla_model
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/model"
+
+# - sensor:
+#     name: Mods Tesla Trim Badging
+#     object_id: modstesla_trim_badging
+#     unique_id: modstesla_trim_badging
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/trim_badging"
+#     icon: mdi:shield-star-outline
+
+# - sensor:
+#     name: Mods Tesla Exterior Color
+#     object_id: modstesla_exterior_color
+#     unique_id: modstesla_exterior_color
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/exterior_color"
+#     icon: mdi:palette
+
+# - sensor:
+#     name: Mods Tesla Wheel Type
+#     object_id: modstesla_wheel_type
+#     unique_id: modstesla_wheel_type
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/wheel_type"
+
+# - sensor:
+#     name: Mods Tesla Spoiler Type
+#     object_id: modstesla_spoiler_type
+#     unique_id: modstesla_spoiler_type
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/spoiler_type"
+#     icon: mdi:car-sports
+
+# - sensor:
+#     name: Mods Tesla Geofence
+#     object_id: modstesla_geofence
+#     unique_id: modstesla_geofence
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/geofence"
+#     icon: mdi:earth
+
+- sensor:
+    name: Mods Tesla Shift State
+    object_id: modstesla_shift_state
+    unique_id: modstesla_shift_state
+    device: *device_default_mt
+    state_topic: "myteslamate/cars/1/gear"
+    icon: mdi:car-shift-pattern
+
+# - binary_sensor:
+#     name: Mods Tesla Parking Brake
+#     object_id: modstesla_park_brake
+#     unique_id: modstesla_park_brake
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/shift_state"
+#     value_template: >-
+#       {% if value == 'P' %}
+#           ON
+#       {% else %}
+#           OFF
+#       {% endif %}
+#     icon: mdi:car-brake-parking
+
+# - sensor:
+#     name: Mods Tesla Power
+#     object_id: modstesla_power
+#     unique_id: modstesla_power
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/power"
+#     device_class: power
+#     unit_of_measurement: kW
+#     icon: mdi:flash
+
+- sensor:
+    name: Mods Tesla Speed
+    object_id: modstesla_speed
+    unique_id: modstesla_speed
+    device: *device_default_mt
+    state_topic: "myteslamate/cars/1/speed_kmh"
+    device_class: speed
+    unit_of_measurement: "km/h"
+    icon: mdi:speedometer
+
+- sensor:
+    name: Mods Tesla Heading
+    object_id: modstesla_heading
+    unique_id: modstesla_heading
+    device: *device_default_mt
+    state_topic: "myteslamate/cars/1/gps_heading"
+    unit_of_measurement: °
+    icon: mdi:compass
+
+# - sensor:
+#     name: Mods Tesla Elevation
+#     object_id: modstesla_elevation
+#     unique_id: modstesla_elevation
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/elevation"
+#     device_class: distance
+#     unit_of_measurement: m
+#     icon: mdi:image-filter-hdr
+
+# - sensor:
+#     name: Mods Tesla Inside Temp
+#     object_id: modstesla_inside_temp
+#     unique_id: modstesla_inside_temp
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/inside_temp"
+#     device_class: temperature
+#     unit_of_measurement: °C
+#     icon: mdi:thermometer-lines
+
+# - sensor:
+#     name: Mods Tesla Outside Temp
+#     object_id: modstesla_outside_temp
+#     unique_id: modstesla_outside_temp
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/outside_temp"
+#     device_class: temperature
+#     unit_of_measurement: °C
+#     icon: mdi:thermometer-lines
+
+- sensor:
+    name: Mods Tesla Odometer
+    object_id: modstesla_odometer
+    unique_id: modstesla_odometer
+    device: *device_default_mt
+    state_topic: "myteslamate/cars/1/odometer"
+    device_class: distance
+    unit_of_measurement: km
+    icon: mdi:counter
+
+- sensor:
+    name: Mods Tesla Est Battery Range
+    object_id: modstesla_est_battery_range
+    unique_id: modstesla_est_battery_range
+    device: *device_default_mt
+    device_class: distance
+    state_topic: "myteslamate/cars/1/battery_range_estimated_km"
+    unit_of_measurement: km
+    icon: mdi:gauge
+
+- sensor:
+    name: Mods Tesla Rated Battery Range
+    object_id: modstesla_rated_battery_range
+    unique_id: modstesla_rated_battery_range
+    device: *device_default_mt
+    state_topic: "myteslamate/cars/1/battery_range_rated_km"
+    device_class: distance
+    unit_of_measurement: km
+    icon: mdi:gauge
+
+# - sensor:
+#     name: Mods Tesla Ideal Battery Range
+#     object_id: modstesla_ideal_battery_range
+#     unique_id: modstesla_ideal_battery_range
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/ideal_battery_range_km"
+#     device_class: distance
+#     unit_of_measurement: km
+#     icon: mdi:gauge
+
+- sensor:
+    name: Mods Tesla Battery Level
+    object_id: modstesla_battery_level
+    unique_id: modstesla_battery_level
+    device: *device_default_mt
+    state_topic: "myteslamate/cars/1/soc"
+    device_class: battery
+    unit_of_measurement: "%"
+    icon: mdi:battery-80
+
+# - sensor:
+#     name: Mods Tesla Usable Battery Level
+#     object_id: modstesla_usable_battery_level
+#     unique_id: modstesla_usable_battery_level
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/usable_battery_level"
+#     device_class: battery
+#     unit_of_measurement: "%"
+#     icon: mdi:battery-80
+
+# - sensor:
+#     name: Mods Tesla Charge Energy Added
+#     object_id: modstesla_charge_energy_added
+#     unique_id: modstesla_charge_energy_added
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/charge_energy_added"
+#     device_class: energy
+#     unit_of_measurement: kWh
+#     icon: mdi:battery-charging
+
+# - sensor:
+#     name: Mods Tesla Charge Limit Soc
+#     object_id: modstesla_charge_limit_soc
+#     unique_id: modstesla_charge_limit_soc
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/charge_limit_soc"
+#     device_class: battery
+#     unit_of_measurement: "%"
+#     icon: mdi:battery-charging-100
+
+# - sensor:
+#     name: Mods Tesla Charger Actual Current
+#     object_id: modstesla_charger_actual_current
+#     unique_id: modstesla_charger_actual_current
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/charger_actual_current"
+#     device_class: current
+#     unit_of_measurement: A
+#     icon: mdi:lightning-bolt
+
+# - sensor:
+#     name: Mods Tesla Charger Phases
+#     object_id: modstesla_charger_phases
+#     unique_id: modstesla_charger_phases
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/charger_phases"
+#     icon: mdi:sine-wave
+
+- sensor:
+    name: Mods Tesla Charger Power
+    object_id: modstesla_charger_power
+    unique_id: modstesla_charger_power
+    device: *device_default_mt
+    state_topic: "myteslamate/cars/1/ac_charging_power"
+    device_class: power
+    unit_of_measurement: kW
+    icon: mdi:lightning-bolt
+
+# - sensor:
+#     name: Mods Tesla Charger Voltage
+#     object_id: modstesla_charger_voltage
+#     unique_id: modstesla_charger_voltage
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/charger_voltage"
+#     device_class: voltage
+#     unit_of_measurement: V
+#     icon: mdi:lightning-bolt
+
+# - sensor:
+#     name: Mods Tesla Scheduled Charging Start Time
+#     object_id: modstesla_scheduled_charging_start_time
+#     unique_id: modstesla_scheduled_charging_start_time
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/scheduled_charging_start_time"
+#     device_class: timestamp
+#     icon: mdi:clock-outline
+
+# - sensor:
+#     name: Mods Tesla Time To Full Charge
+#     object_id: modstesla_time_to_full_charge
+#     unique_id: modstesla_time_to_full_charge
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/time_to_full_charge"
+#     device_class: duration
+#     unit_of_measurement: h
+#     icon: mdi:clock-outline
+
+# - sensor:
+#     name: Mods Tesla TPMS Pressure Front Left
+#     object_id: modstesla_tpms_pressure_fl
+#     unique_id: modstesla_tpms_pressure_fl
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/tpms_pressure_fl"
+#     device_class: pressure
+#     unit_of_measurement: bar
+#     icon: mdi:car-tire-alert
+
+# - sensor:
+#     name: Mods Tesla TPMS Pressure Front Left (psi)
+#     object_id: modstesla_tpms_pressure_fl_psi
+#     unique_id: modstesla_tpms_pressure_fl_psi
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/tpms_pressure_fl"
+#     device_class: pressure
+#     unit_of_measurement: psi
+#     icon: mdi:car-tire-alert
+#     value_template: "{{ value | float * 14.50377 }}"
+#     suggested_display_precision: 2
+
+# - sensor:
+#     name: Mods Tesla TPMS Pressure Front Right
+#     object_id: modstesla_tpms_pressure_fr
+#     unique_id: modstesla_tpms_pressure_fr
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/tpms_pressure_fr"
+#     device_class: pressure
+#     unit_of_measurement: bar
+#     icon: mdi:car-tire-alert
+
+# - sensor:
+#     name: Mods Tesla TPMS Pressure Front Right (psi)
+#     object_id: modstesla_tpms_pressure_fr_psi
+#     unique_id: modstesla_tpms_pressure_fr_psi
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/tpms_pressure_fr"
+#     device_class: pressure
+#     unit_of_measurement: psi
+#     icon: mdi:car-tire-alert
+#     value_template: "{{ value | float * 14.50377 }}"
+#     suggested_display_precision: 2
+
+# - sensor:
+#     name: Mods Tesla TPMS Pressure Rear Left
+#     object_id: modstesla_tpms_pressure_rl
+#     unique_id: modstesla_tpms_pressure_rl
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/tpms_pressure_rl"
+#     device_class: pressure
+#     unit_of_measurement: bar
+#     icon: mdi:car-tire-alert
+
+# - sensor:
+#     name: Mods Tesla TPMS Pressure Rear Left (psi)
+#     object_id: modstesla_tpms_pressure_rl_psi
+#     unique_id: modstesla_tpms_pressure_rl_psi
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/tpms_pressure_rl"
+#     device_class: pressure
+#     unit_of_measurement: psi
+#     icon: mdi:car-tire-alert
+#     value_template: "{{ value | float * 14.50377 }}"
+#     suggested_display_precision: 2
+
+# - sensor:
+#     name: Mods Tesla TPMS Pressure Rear Right
+#     object_id: modstesla_tpms_pressure_rr
+#     unique_id: modstesla_tpms_pressure_rr
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/tpms_pressure_rr"
+#     device_class: pressure
+#     unit_of_measurement: bar
+#     icon: mdi:car-tire-alert
+
+# - sensor:
+#     name: Mods Tesla TPMS Pressure Rear Right (psi)
+#     object_id: modstesla_tpms_pressure_rr_psi
+#     unique_id: modstesla_tpms_pressure_rr_psi
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/tpms_pressure_rr"
+#     device_class: pressure
+#     unit_of_measurement: psi
+#     icon: mdi:car-tire-alert
+#     value_template: "{{ value | float * 14.50377 }}"
+#     suggested_display_precision: 2
+
+# - sensor:
+#     name: Mods Tesla Active route destination
+#     object_id: modstesla_active_route_destination
+#     unique_id: modstesla_active_route_destination
+#     availability: *teslamate_active_route_availability_mt
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/active_route"
+#     value_template: >
+#       {% if not value_json.error and value_json.destination %}
+#         {{ value_json.destination }}
+#       {% endif %}
+#     icon: mdi:map-marker
+
+# - sensor:
+#     name: Mods Tesla Active route energy at arrival
+#     object_id: modstesla_active_route_energy_at_arrival
+#     unique_id: modstesla_active_route_energy_at_arrival
+#     availability: *teslamate_active_route_availability_mt
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/active_route"
+#     value_template: >
+#       {% if not value_json.error and value_json.energy_at_arrival %}
+#         {{ value_json.energy_at_arrival }}
+#       {% endif %}
+#     device_class: battery
+#     unit_of_measurement: "%"
+#     icon: mdi:battery-80
+
+# - sensor:
+#     name: Mods Tesla Active route distance to arrival
+#     object_id: modstesla_active_route_distance_to_arrival
+#     unique_id: modstesla_active_route_distance_to_arrival
+#     availability: *teslamate_active_route_availability_mt
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/active_route"
+#     value_template: >
+#       {% if not value_json.error and value_json.miles_to_arrival %}
+#         {{ value_json.miles_to_arrival }}
+#       {% endif %}
+#     device_class: distance
+#     unit_of_measurement: mi
+#     icon: mdi:map-marker-distance
+
+# - sensor:
+#     name: Mods Tesla Active route minutes to arrival
+#     object_id: modstesla_active_route_minutes_to_arrival
+#     unique_id: modstesla_active_route_minutes_to_arrival
+#     availability: *teslamate_active_route_availability_mt
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/active_route"
+#     value_template: >
+#       {% if not value_json.error and value_json.minutes_to_arrival %}
+#         {{ value_json.minutes_to_arrival }}
+#       {% endif %}
+#     device_class: duration
+#     unit_of_measurement: min
+#     icon: mdi:clock-outline
+
+# - sensor:
+#     name: Mods Tesla Active route traffic minutes delay
+#     object_id: modstesla_active_route_traffic_minutes_delay
+#     unique_id: modstesla_active_route_traffic_minutes_delay
+#     availability: *teslamate_active_route_availability_mt
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/active_route"
+#     value_template: >
+#       {% if not value_json.error and value_json.traffic_minutes_delay %}
+#         {{ value_json.traffic_minutes_delay }}
+#       {% endif %}
+#     device_class: duration
+#     unit_of_measurement: min
+#     icon: mdi:clock-alert-outline
+
+# - binary_sensor:
+#     name: Mods Tesla Healthy
+#     object_id: modstesla_healthy
+#     unique_id: modstesla_healthy
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/healthy"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:heart-pulse
+
+# - binary_sensor:
+#     name: Mods Tesla Update Available
+#     object_id: modstesla_update_available
+#     unique_id: modstesla_update_available
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/update_available"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:alarm
+
+# - binary_sensor:
+#     name: Mods Tesla Locked
+#     object_id: modstesla_locked
+#     unique_id: modstesla_locked
+#     device: *device_default_mt
+#     device_class: lock
+#     state_topic: "myteslamate/cars/1/locked"
+#     payload_on: "false"
+#     payload_off: "true"
+
+# - binary_sensor:
+#     name: Mods Tesla Sentry Mode
+#     object_id: modstesla_sentry_mode
+#     unique_id: modstesla_sentry_mode
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/sentry_mode"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:cctv
+
+# - binary_sensor:
+#     name: Mods Tesla Windows Open
+#     object_id: modstesla_windows_open
+#     unique_id: modstesla_windows_open
+#     device: *device_default_mt
+#     device_class: window
+#     state_topic: "myteslamate/cars/1/windows_open"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:car-door
+
+# - binary_sensor:
+#     name: Mods Tesla Doors Open
+#     object_id: modstesla_doors_open
+#     unique_id: modstesla_doors_open
+#     device: *device_default_mt
+#     device_class: door
+#     state_topic: "myteslamate/cars/1/doors_open"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:car-door
+
+# - binary_sensor:
+#     name: Mods Tesla Trunk Open
+#     object_id: modstesla_trunk_open
+#     unique_id: modstesla_trunk_open
+#     device: *device_default_mt
+#     device_class: opening
+#     state_topic: "myteslamate/cars/1/trunk_open"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:car-side
+
+# - binary_sensor:
+#     name: Mods Tesla Frunk Open
+#     object_id: modstesla_frunk_open
+#     unique_id: modstesla_frunk_open
+#     device: *device_default_mt
+#     device_class: opening
+#     state_topic: "myteslamate/cars/1/frunk_open"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:car-side
+
+# - binary_sensor:
+#     name: Mods Tesla Is User Present
+#     object_id: modstesla_is_user_present
+#     unique_id: modstesla_is_user_present
+#     device: *device_default_mt
+#     device_class: presence
+#     state_topic: "myteslamate/cars/1/is_user_present"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:human-greeting
+
+# - binary_sensor:
+#     name: Mods Tesla Is Climate On
+#     object_id: modstesla_is_climate_on
+#     unique_id: modstesla_is_climate_on
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/is_climate_on"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:fan
+
+# - binary_sensor:
+#     name: Mods Tesla Is Preconditioning
+#     object_id: modstesla_is_preconditioning
+#     unique_id: modstesla_is_preconditioning
+#     device: *device_default_mt
+#     state_topic: "myteslamate/cars/1/is_preconditioning"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:fan
+
+# - binary_sensor:
+#     name: Mods Tesla Plugged In
+#     object_id: modstesla_plugged_in
+#     unique_id: modstesla_plugged_in
+#     device: *device_default_mt
+#     device_class: plug
+#     state_topic: "myteslamate/cars/1/plugged_in"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:ev-station
+
+# - binary_sensor:
+#     name: Mods Tesla Charge Port Door OPEN
+#     object_id: modstesla_charge_port_door_open
+#     unique_id: modstesla_charge_port_door_open
+#     device: *device_default_mt
+#     device_class: opening
+#     state_topic: "myteslamate/cars/1/charge_port_door_open"
+#     payload_on: "true"
+#     payload_off: "false"
+#     icon: mdi:ev-plug-tesla
