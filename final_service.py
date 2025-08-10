@@ -39,9 +39,20 @@ class TeslaMQTTService(win32serviceutil.ServiceFramework):
         venv_python = r"C:\Users\Nebula PC\teslamate\venv\Scripts\python.exe"
         script = r"C:\Users\Nebula PC\teslamate\tesla_mqtt_bridge.py"
         
+        # Create logs directory if it doesn't exist
+        log_dir = r"C:\Users\Nebula PC\teslamate\logs"
+        os.makedirs(log_dir, exist_ok=True)
+        
         while self.running:
             try:
-                self.process = subprocess.Popen([venv_python, script])
+                # Open log files
+                with open(os.path.join(log_dir, "tesla_service.log"), "a") as log_file, \
+                     open(os.path.join(log_dir, "tesla_service_error.log"), "a") as error_file:
+                    
+                    self.process = subprocess.Popen([venv_python, script], 
+                                                   stdout=log_file, 
+                                                   stderr=error_file,
+                                                   text=True)
                 
                 # Wait for process to finish or stop signal
                 while self.process.poll() is None and self.running:

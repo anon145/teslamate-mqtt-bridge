@@ -16,7 +16,7 @@ import signal
 import argparse
 
 # Global connections dictionary
-connections = {}
+connections: Dict[str, Any] = {}
 
 # Set up logging
 def setup_logging(debug=False):
@@ -130,10 +130,14 @@ LOCATION_FIELDS = ["Location", "DestinationLocation", "OriginLocation"]
 class TeslaMetricConverter:
     """Class for handling Tesla metric conversions"""
     
-    def __init__(self, csv_file: str = 'fleet_streaming_fields.csv'):
-        self.field_mappings = {}
-        self.field_types = {}
-        self.field_categories = {}
+    def __init__(self, csv_file: str = None):
+        if csv_file is None:
+            # Use absolute path relative to this script's location
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            csv_file = os.path.join(script_dir, 'fleet_streaming_fields.csv')
+        self.field_mappings: Dict[str, str] = {}
+        self.field_types: Dict[str, str] = {}
+        self.field_categories: Dict[str, str] = {}
         self._load_field_metadata(csv_file)
     
     def _load_field_metadata(self, csv_file: str) -> None:
@@ -292,7 +296,7 @@ class TeslaMetricConverter:
     def process_field(self, field_name: str, value_obj: Dict[str, Any]) -> Dict[str, Any]:
         """Process a single field and return information for MQTT publishing"""
         mqtt_topic = self.get_mqtt_topic(field_name)
-        result = {
+        result: Dict[str, Any] = {
             "topic": mqtt_topic,
             "value": None,
             "formatted_value": ""
