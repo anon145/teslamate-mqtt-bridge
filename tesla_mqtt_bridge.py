@@ -563,8 +563,9 @@ async def process_vehicle_message(message, car_num, id_or_vin, mqtt_client, tesl
         logger.warning(f"Invalid JSON received for car {car_num}: {e}")
         return True
     
-    # Add this line to log the complete raw message
-    logger.debug(f"RAW DATA for car {car_num}: {json.dumps(data, indent=2)}")
+    # Log sanitized data (remove sensitive fields)
+    sanitized_data = {k: v for k, v in data.items() if k not in ['token', 'auth', 'api_key']}
+    logger.debug(f"RAW DATA for car {car_num}: {json.dumps(sanitized_data, indent=2)}")
     
     logger.debug(f"Received for car {car_num}: {message[:200]}...")
     
